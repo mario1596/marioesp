@@ -7,10 +7,9 @@
 //});
 
 
-
-
-
-
+$( document ).ajaxError(function() {
+  console.log( "Triggered ajaxError handler." );
+});
 
 
 /*********************CHANGE PAGE*****************************/
@@ -27,11 +26,11 @@ function page( url ){
     
     $.ajax({
        url: "/pages/" + url + ".html",
-        data:data,
       
-    complete: function(result)
+    success: function(result)
     {
-        $("#page").html(result.responseText);
+        $("#page").html(result);
+        history.pushState( null , url, "/" + url + "/");
     },
       error: function(jqHXR , exception){
           console.log(jqHXR,exception);
@@ -42,7 +41,7 @@ function page( url ){
     });
 
 document.title = url;
-history.pushState( null , url, "/" + url + "/");
+return Event.preventDefault();
 };
 
 /**********************ONLOAD FUNC****************************/
