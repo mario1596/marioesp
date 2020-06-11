@@ -27,17 +27,16 @@ function page( url ){
     
     $.ajax({
        url: "/pages/" + url + ".html",
-        global: false,
-        cache: false,
         data:data,
       
     complete: function(result)
     {
         $("#page").html(result.responseText);
     },
-      error: function(){
-        alert('the page not exist');
-          return false;
+      error: function(jqHXR , exception){
+          console.log(jqHXR,exception);
+//        alert('the page not exist');
+//          return false;
     }
         
     });
@@ -68,7 +67,7 @@ window.onpopstate = function(event) {
 /*********************PAGE HREF CHANGE*****************************/
 
 
-$('a').click( function(event){	
+$('a').unbind().click( function(event){	
 	
 	var mypage = $( this ).attr('href');
 	page( mypage.replace(/\//g, ""));
