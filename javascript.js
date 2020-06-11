@@ -18,11 +18,32 @@
 
 function page( url ){
 	
-	$( "#page" ).load( "/pages/" + url + '.html' );	
-	document.title = url;
-history.pushState( null , url, "/" + url + "/");	
+    
+    
+    
+//	$( "#page" ).load( "/pages/" + url + '.html' );	
+	
 //	console.log( "page " + url + " opened!");
+    
+    $.ajax({
+       url: "/pages/" + url + ".html",
+        global: false,
+        cache: false,
+        data:data,
+      
+    complete: function(result)
+    {
+        $("#page").html(result);
+    },
+      error: function(){
+        alert('the page not exist');
+          return false;
+    }
+        
+    });
 
+document.title = url;
+history.pushState( null , url, "/" + url + "/");
 };
 
 /**********************ONLOAD FUNC****************************/
