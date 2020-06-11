@@ -33,7 +33,7 @@ function page( url ){
       
     complete: function(result)
     {
-        $("#page").html(result);
+        $("#page").html(result.responseText);
     },
       error: function(){
         alert('the page not exist');
