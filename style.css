@@ -1,0 +1,122 @@
+html{
+	width: 100%;
+	height: 100%;
+	overflow-y:auto; 
+	-webkit-overflow-scrolling: touch;
+} 
+
+body{
+	padding:10px;
+	text-align: left;
+	text-overflow: ellipsis;
+	font-size:1.01em;
+	font-family: Helvetica, Arial, sans-serif;
+	color:#000;
+	cursor:default;
+}
+
+h1,h2,h3,h4,h5,h6{
+	line-height:.5em;
+	height:.5em;
+	font-size:1em;
+	font-weight:100;
+}
+
+a{
+	text-decoration: none;
+	color: #0085c7;
+}
+
+a:visited{
+	color: #c70074;
+}
+
+a:hover{
+	color: #F60;
+}
+
+hr{
+	display:block;
+	width:100%;
+	height:6px;
+	background-color:#cdcdcd;
+	margin:8px 0;
+	border-top:1px solid #555;
+	border-bottom:1px solid #eee;
+	border-radius:2px;
+	position:relative;
+}
+
+hr:after{
+	position:absolute;
+	content:'';
+	width:10px;
+	height:10px;
+	display:block;
+	top:-3.8px;
+	right:0;
+	background:gray;
+	border-radius:50%;
+}
+
+/***** */
+#container{
+    position: absolute;
+    top: 50px;
+    left: 0;
+    bottom: 50px;
+    right: 0;
+    background-color: gray;
+    z-index: 1;
+    overflow: hidden;
+}
+
+
+#logo{
+    position: absolute;
+    width: 90px;
+    height: 50px;
+    background-color: black;
+    top: 5px;
+    left: 5px;
+}
+nav{
+    position: absolute;
+    height: 40px;
+    width: 40px;
+    top: 5px;
+    right: 5px;
+    background-color: #000;
+    border-radius: 6px;
+    z-index: 2;
+}
+main{
+   position: absolute;
+    
+    left: 30px;
+    right: 0;
+    border: 0;
+    background-color: white;
+    overflow: auto;
+    padding: 20px;
+}
+footer{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 50px;
+    right: 0;
+    background-color: aquamarine; 
+}
+
+aside.bottomBar{
+    position: absolute;
+    left: 5px;
+    right: 5px;
+    bottom: 5px;
+    height: 40px;
+    background-color: #000;
+    border-radius: 6px;
+    z-index: 2
+}
+
