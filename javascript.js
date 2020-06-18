@@ -64,7 +64,7 @@ $('a').unbind().click(function(event){
   var mypage = $this.attr('href');
 
 //comment out
-   page( mypage.replace(/\//g,'') );
+//   page( mypage.replace(/\//g,'') );
 
   return event.preventDefault();
 });
