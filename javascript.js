@@ -1,82 +1,76 @@
-
-//    $.ajax({
-//  url: "/pages/" + url,
-//        method: "GET"
-//}).done(function() {
-//  $( "page" ).html( data );
-//});
-
+/***************************************************************************/
+// ENGINE FOR PAGES
 
 $( document ).ajaxError(function() {
   console.log( "Triggered ajaxError handler." );
 });
 
+function page(url){
 
-/*********************CHANGE PAGE*****************************/
-
-
-function page( url ){
+	//$('#page').html(url);
+	//$("#page").load("/pages/" + url + '.html');
 	
-    
-    
-    
-//	$( "#page" ).load( "/pages/" + url + '.html' );	
-	
-//	console.log( "page " + url + " opened!");
-    
-    $.ajax({
-       url: "/pages/" + url + ".html",
-      
-    success: function(result)
-    {
-        $("#page").html(result);
-        history.pushState( null , url, "/" + url + "/");
-    },
-      error: function(jqHXR , exception){
-          console.log(jqHXR,exception);
-//        alert('the page not exist');
-//          return false;
-    }
-        
-    });
+	$.ajax({
+	url: "/pages/" + url + ".html",
 
-document.title = url;
-return Event.preventDefault();
+	   error: function( jqXHR, exception ){
+		 console.log( jqXHR, exception )
+		 //alert('the page not exist');
+		 //return false;
+	   },
+	   
+	   success: function( result ){		
+		$("#page").html( result );
+		history.pushState(null, url, "/" + url + '/');		 
+	   }	
+
+	 });	
+	
+	document.title = url;	
+	console.log('page '+ url + " opened!");
+	return event.preventDefault();
+
 };
 
-/**********************ONLOAD FUNC****************************/
-
+// this way the function is an object
+// var page = function(){}
 
 window.onload = function(){
-	page( 'home' );
+  page('home');
 };
-/**************************************************/
+
+/***************************************************************************/
+
 window.onpopstate = function(event) {
-    
- 
-    
-    var url = (event.target.location.pathname);
-    url = url.replace(/\//g,'');
-    $( "#page" ).load( "/pages/" + url + '.html' );	
-  console.log(url);
-  
-    
+
+	var url = event.target.location.pathname;
+	url = url.replace(/\//g,'');
+
+	$("#page").load("/pages/" + url + '.html');
+
+	//console.log( url );
+
 };
 
-/*********************PAGE HREF CHANGE*****************************/
+/***************************************************************************/
+// CHANGE BEHAVIOR ABOUT ANCHORS
 
+$('a').unbind().click(function(event){
 
-$('a').unbind().click( function(event){	
-	
-	var mypage = $( this ).attr('href');
-	page( mypage.replace(/\//g, ""));
-	
-	return event.preventDefault();
+	var $this = $(this);
+
+  console.info( $this.attr('href'));
+
+  var mypage = $this.attr('href');
+
+//comment out
+   page( mypage.replace(/\//g,'') );
+
+  return event.preventDefault();
 });
 
-/********************SERVICE WORKER*******************/
-
-
+/***************************************************************************/
+// SERVICE WORKER
 
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', function() {
@@ -90,10 +84,9 @@ if ('serviceWorker' in navigator) {
   });
 }
 
+/***************************************************************************/
+// NOTIFICATION SERVICE
 
-
-
-/************************NOTIFICATIONS**************************/
 function notifyMe() {
   // Let's check if the browser supports notifications
   if (!("Notification" in window)) {
@@ -115,6 +108,17 @@ function notifyMe() {
       }
     });
   }
+
+  // At last, if the user has denied notifications, and you
+  // want to be respectful there is no need to bother them any more.
 }
 
+// $(window).om('load', function(){
+//
+//   page('home.html');
+// });
 
+
+// window.addEventListener("test", function(){ page('home.html');
+//
+// }, null);

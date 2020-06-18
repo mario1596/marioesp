@@ -7,13 +7,6 @@ function page( url )
     
    $("#page").load("/pages/" + url);
     
-//    $.ajax({
-//  url: "/pages/" + url,
-//        method: "GET"
-//}).done(function() {
-//  $( "page" ).html( data );
-//});
-    
 };
 
 
@@ -66,9 +59,3 @@ function notifyMe() {
   // At last, if the user has denied notifications, and you 
   // want to be respectful there is no need to bother them any more.
 }
-
-
-//$(window).on('load',function(){
-//   page('home.html'); 
-//});
-//page( 'home.html');
